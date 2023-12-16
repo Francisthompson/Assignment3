@@ -5,32 +5,34 @@
 
 /********* create variables *********/
 
+/********* create variables *********/
+
 // Cost per day
-const costPerDay = 50;
+var costPerDay = 50;
 
 // Number of days selected
-let numberOfDays = 0;
+var numberOfDays = 0;
 
-// Elements on the screen
-const daySelectors = document.querySelectorAll('.day-selector');
-const clearDaysButton = document.querySelector('.clear-days');
-const halfDayButton = document.querySelector('.half-day');
-const fullDayButton = document.querySelector('.full-day');
-const calculatedCostElement = document.getElementById('calculated-cost');
+// Elements
+var daySelectors = document.querySelectorAll('.day-selector');
+var clearDaysButton = document.querySelector('.clear-days');
+var halfDayButton = document.querySelector('.half-day');
+var fullDayButton = document.querySelector('.full-day');
+var calculatedCostElement = document.getElementById('calculated-cost');
 
-// Additional variables for functionality
-let clickedDays = [];
-let dailyRate = costPerDay;
+// Additional variables
+var clickedDays = [];
+var dailyRate = costPerDay;
 
 /********* colour change days of week *********/
 
 // Event listener for day selectors
-daySelectors.forEach(selector => {
-    selector.addEventListener('click', () => {
-        const selectedDay = selector.value;
+daySelectors.forEach(function(selector) {
+    selector.addEventListener('click', function() {
+        var selectedDay = selector.value;
 
         // Check if the day is already clicked
-        if (!clickedDays.includes(selectedDay)) {
+        if (clickedDays.indexOf(selectedDay) === -1) {
             // Add the "clicked" class to the selected day
             selector.classList.add('clicked');
 
@@ -46,9 +48,9 @@ daySelectors.forEach(selector => {
 /********* clear days *********/
 
 // Event listener for clear days button
-clearDaysButton.addEventListener('click', () => {
+clearDaysButton.addEventListener('click', function() {
     // Remove the "clicked" class from all day selectors
-    daySelectors.forEach(selector => {
+    daySelectors.forEach(function(selector) {
         selector.classList.remove('clicked');
     });
 
@@ -65,9 +67,9 @@ clearDaysButton.addEventListener('click', () => {
 /********* change rate *********/
 
 // Event listener for half-day button
-halfDayButton.addEventListener('click', () => {
-    // Set the daily rate to $20 for half day
-    dailyRate = 20;
+halfDayButton.addEventListener('click', function() {
+    // Set the daily rate for half day
+    dailyRate = 25;
 
     // Add the "clicked" class to "half" and remove it from "full"
     halfDayButton.classList.add('clicked');
@@ -78,8 +80,8 @@ halfDayButton.addEventListener('click', () => {
 });
 
 // Event listener for full-day button
-fullDayButton.addEventListener('click', () => {
-    // Set the daily rate back to $35 for full day
+fullDayButton.addEventListener('click', function() {
+    // Set the daily rate for full day
     dailyRate = costPerDay;
 
     // Add the "clicked" class to "full" and remove it from "half"
@@ -94,8 +96,8 @@ fullDayButton.addEventListener('click', () => {
 
 // Calculate and update the total cost
 function calculateCost() {
-    const totalCost = numberOfDays * dailyRate;
-    calculatedCostElement.innerHTML = `$${totalCost}`;
+    var totalCost = numberOfDays * dailyRate;
+    calculatedCostElement.innerHTML = '$' + totalCost;
 }
 
 
